@@ -87,9 +87,22 @@ class TitleState extends MusicBeatState
 	public static var updateVersion:String = '';
 
 	override public function create():Void
+  #if android || FlxG.android.justReleased.BACK #end
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
+	 #if android
+		var justTouched:Bool = false;
+
+		for (touch in FlxG.touches.list)
+		if (touch.justPressed)
+		justTouched = true;
+		#end
+
+		if (controls.ACCEPT #if android || justTouched #end)
+		{
+			//Do something
+		}
 
 		#if LUA_ALLOWED
 		Paths.pushGlobalMods();
