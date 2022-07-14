@@ -91,18 +91,6 @@ class TitleState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
-	 #if android
-		var justTouched:Bool = false;
-
-		for (touch in FlxG.touches.list)
-		if (touch.justPressed)
-		justTouched = true;
-		#end
-
-		if (controls.ACCEPT #if android || justTouched #end)
-		{
-			//Do something
-		}
 
 		#if LUA_ALLOWED
 		Paths.pushGlobalMods();
